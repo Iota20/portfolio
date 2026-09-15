@@ -12,6 +12,16 @@ const route66Screens = Object.entries(
   .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath, undefined, { numeric: true }))
   .map(([, image]) => image as string);
 
+const jblScreens = Object.entries(
+  import.meta.glob("../assets/bg/jblappclonescreens/*.jpg", {
+    eager: true,
+    import: "default",
+    query: "?url",
+  }),
+)
+  .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath, undefined, { numeric: true }))
+  .map(([, image]) => image as string);
+
 function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentProject = PROJECTS_DATA[currentIndex];
@@ -24,15 +34,21 @@ function Projects() {
     setCurrentIndex((index) => (index + 1) % PROJECTS_DATA.length);
   };
 
+  const currentScreens = currentProject?.title === "Route66"
+    ? route66Screens
+    : currentProject?.title === "JBL Headphones App Clone"
+      ? jblScreens
+      : [];
+
   return (
     <section id="projects" className="relative flex min-h-screen flex-col overflow-hidden border-t-[20px] border-gray-500 pt-16 pb-16 shadow-[0_10px_24px_rgba(0,0,0,0.65)]">
-      <h2 className="section-heading">Projects</h2>
+      <h2 className="section-heading relative z-20">Projects</h2>
 
       <div className="relative flex flex-1 items-center justify-center">
-        {currentProject?.title === "Route66" && (
+        {currentScreens.length > 0 && (
           <div className="project-screen-carousel" aria-hidden="true">
             <div className="project-screen-track">
-              {[...route66Screens, ...route66Screens].map((screen, index) => (
+              {[...currentScreens, ...currentScreens].map((screen, index) => (
                 <img
                   className="project-screen"
                   key={`${screen}-${index}`}
@@ -62,7 +78,7 @@ function Projects() {
         </button>
 
         {currentProject && (
-          <article className="project-details-card relative z-10 mx-auto flex min-h-[60vh] max-w-xl flex-col gap-6 px-6 py-6">
+          <article className="project-details-card relative z-20 mx-auto flex min-h-[60vh] max-w-xl flex-col gap-6 px-6 py-6">
             <h3 className="m-0 font-bold">{currentProject.title}</h3>
 
             <div className="flex flex-1 items-center justify-center">
