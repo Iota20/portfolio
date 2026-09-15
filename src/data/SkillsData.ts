@@ -3,7 +3,7 @@ export const SKILLS = {
     "Backend": ["PHP", "Laravel", "Node.js", "Express.js"],
     "Other Languages": ["C", "Java"],
     "Databases": ["MySQL", "MongoDB"],
-    "Cloud & Deployment": ["Render", "Apache"],
+    "Cloud & Deployment": ["Render", "Apache", "Vercel"],
     "Tools": ["Git/Github", "VSCode", "Android Studio"]
 }
 

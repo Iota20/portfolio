@@ -5,7 +5,7 @@ function Footer() {
         <span className="bottom-footer__copy text-base font-bold">© 2026 Ezaiah</span>
 
         <span className="bottom-footer__brand text-base text-slate-400">Built with:</span>
-        <span className="text-base text-slate-400">React · Tailwind CSS · Apache</span>
+        <span className="text-base text-slate-400">React · Tailwind CSS · Vercel</span>
       </div>
     </footer>
   )
